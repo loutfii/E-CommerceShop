@@ -2,8 +2,6 @@
 
 Ce projet est une mini-boutique en Spring Boot avec rendu Freemarker, gestion de panier (invité + connecté), authentification, administration des produits (CRUD + upload d'images), et catégories (création à la volée côté admin).
 
-Le code est commenté en français, l'UI est en anglais.
-
 ## Fonctionnalités
 
 **Catalogue produits** : listing paginé, recherche simple (name), filtres (min/max/category).
