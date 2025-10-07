@@ -1,0 +1,29 @@
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  freemarker:
+    expose-request-attributes: true
+    expose-session-attributes: true
+    settings:
+      template_exception_handler: rethrow
+
+  web:
+    resources:
+      add-mappings: true   # garde CSS/JS/images
+
+server:
+  error:
+    include-message: always
+    include-exception: true
+    include-stacktrace: always
+  compression:
+    enabled: false
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.springframework.freemarker: DEBUG
+    # Pour voir tous les mappings au démarrage (utile):
+    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: TRACE

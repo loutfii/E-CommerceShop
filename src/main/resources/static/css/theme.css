@@ -1,0 +1,270 @@
+/* static/css/theme.css
+   Thème clair + dégradés bleus (pas de mauve)
+   Compatible avec la navbar .navbar-glass et tous les templates actuels
+   ------------------------------------------------------------------- */
+
+:root{
+    /* Palette claire (lisible) */
+    --bg:        #f6f8fb;        /* fond de page clair */
+    --surface:   #ffffff;         /* cartes, panneaux */
+    --text:      #0f172a;         /* texte principal */
+    --muted:     #475569;         /* texte secondaire */
+    --border:    rgba(2,6,23,.08);
+
+    /* Brand 100% bleu */
+    --acc-1:     #1f6feb;         /* bleu "brand" */
+    --acc-2:     #00b2ff;         /* bleu ciel / cyan */
+    --primary:   #1f6feb;         /* utilisé par focus/états */
+    --primary-2: #00b2ff;
+
+    --success:   #16a34a;
+    --danger:    #ef4444;
+    --warning:   #f59e0b;
+
+    /* Bootstrap mapping principal */
+    --bs-body-bg: var(--bg);
+    --bs-body-color: var(--text);
+    --bs-border-color: var(--border);
+
+    /* Liens bootstrap */
+    --bs-link-color: #1663e6;
+    --bs-link-hover-color: #0b57d0;
+
+    /* Rayons / ombres */
+    --bs-border-radius: .8rem;
+    --bs-border-radius-sm: .6rem;
+    --bs-border-radius-lg: 1rem;
+
+    /* Ombres “hero” (douces) */
+    --shadow-hero:
+            0 12px 30px rgba(31,111,235,.12),
+            0 6px 18px rgba(0,178,255,.10),
+            0 2px 8px rgba(15,23,42,.06);
+    --shadow-soft:
+            0 10px 26px rgba(15,23,42,.08);
+}
+
+/* (Optionnel) Dark auto si OS en dark – garde les bleus, assombrit fonds/texte */
+@media (prefers-color-scheme: dark){
+    :root{
+        --bg:      #0f1115;
+        --surface: #151922;
+        --text:    #e6e8ee;
+        --muted:   #a7afc5;
+        --border:  #263147;
+
+        --bs-body-bg: var(--bg);
+        --bs-body-color: var(--text);
+        --bs-border-color: var(--border);
+
+        --shadow-hero:
+                0 20px 60px rgba(0,0,0,.45);
+        --shadow-soft:
+                0 10px 30px rgba(0,0,0,.28);
+    }
+}
+
+/* ================= Base ================= */
+html, body{ height:100%; }
+body{
+    background:
+            radial-gradient(1200px 800px at -10% -15%, rgba(31,111,235,.10), transparent 50%),
+            radial-gradient(1200px 800px at 110% 120%, rgba(0,178,255,.10), transparent 50%),
+            var(--bs-body-bg);
+    color: var(--bs-body-color);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ================= Navbar “glass” =================
+   Garde le style sombre/verre mais sur fond clair global c’est lisible.
+   Si tu veux une navbar claire, dis-le et je te fournis la variante. */
+.navbar-glass{
+    background: linear-gradient(
+            to bottom,
+            rgba(15,23,42,.92),
+            rgba(15,23,42,.86)
+    ) !important;
+    backdrop-filter: saturate(140%) blur(8px);
+    border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+/* Marque / titre dégradé 100% bleu */
+.text-gradient{
+    background: linear-gradient(90deg, var(--acc-1), var(--acc-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+}
+
+/* ================= Cartes / Surfaces ================= */
+.card{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--bs-border-radius);
+    box-shadow: var(--shadow-soft);
+}
+.card .card-body{ color: var(--text); }
+.shadow-hero{ box-shadow: var(--shadow-hero); }
+
+/* ================= Boutons ================= */
+.btn{
+    border-radius: var(--bs-border-radius);
+}
+.btn-primary{
+    background: linear-gradient(90deg, var(--acc-1), var(--acc-2));
+    border: none;
+    color: #fff;
+}
+.btn-primary:hover{
+    filter: brightness(.98);
+}
+.btn-outline-secondary{
+    border-color: var(--border);
+    color: var(--text);
+}
+.btn-outline-secondary:hover{
+    background: #eef6ff;
+    border-color: color-mix(in srgb, var(--acc-1) 28%, #ffffff);
+}
+
+/* ================= Liens ================= */
+a{ text-decoration: none; }
+a:hover{ text-decoration: underline; }
+
+/* “link-light” de BS est trop pâle sur fond clair → on le rend bleu lisible */
+.link-light{
+    color: var(--acc-1) !important;
+}
+
+/* ================= Formulaires ================= */
+.form-control, .form-select, .form-check-input{
+    background: #fff;
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: var(--bs-border-radius-sm);
+}
+.form-control::placeholder{ color: color-mix(in srgb, var(--muted) 65%, transparent); }
+.form-control:focus, .form-select:focus{
+    border-color: rgba(31,111,235,.55);
+    box-shadow: 0 0 0 .2rem rgba(31,111,235,.22);
+}
+/* États invalides */
+.is-invalid{
+    border-color: rgba(239,68,68,.85) !important;
+}
+.is-invalid:focus{
+    box-shadow: 0 0 0 .2rem rgba(239,68,68,.25) !important;
+}
+
+/* ================= Tables ================= */
+.table{
+    --bs-table-color: var(--text);
+    --bs-table-striped-color: var(--text);
+    --bs-table-striped-bg: rgba(2,6,23,.03);
+    --bs-table-hover-bg: rgba(2,6,23,.04);
+    border-color: var(--border);
+}
+
+/* ================= Badges / Alerts ================= */
+.badge{ border-radius: 999px; }
+.alert{
+    border-radius: var(--bs-border-radius);
+    border-color: var(--border);
+}
+
+/* ================= Pagination ================= */
+.pagination .page-link{
+    color: var(--text);
+    border-color: var(--border);
+    background: #fff;
+}
+.pagination .page-item.active .page-link{
+    color:#fff;
+    background: linear-gradient(90deg, var(--acc-1), var(--acc-2));
+    border-color: transparent;
+}
+
+/* ================= Utilitaires ================= */
+.m-0{ margin:0 !important; }
+.mt-4{ margin-top:1.5rem !important; }
+
+/* Focus accessible et cohérent */
+:focus-visible{
+    outline: 0 !important;
+    box-shadow:
+            0 0 0 .2rem color-mix(in srgb, var(--acc-1) 32%, transparent),
+            0 0 0 .35rem color-mix(in srgb, var(--acc-2) 18%, transparent) !important;
+    border-radius: .6rem;
+}
+
+/* image */
+.object-fit-cover { object-fit: cover; }
+.product-card-img { aspect-ratio: 4/3; object-fit: cover; }
+
+
+/* ================================
+    UI (accessibilité + douceur)
+================================ */
+
+/* 1) Transitions douces et cohérentes */
+.btn, .card, .navbar, .form-control, .form-select, .page-link, a, img {
+    transition: box-shadow .2s ease, transform .12s ease, background-color .2s ease,
+    color .2s ease, border-color .2s ease, opacity .2s ease;
+}
+
+/* 2) Hover subtil sur les cartes et éléments cliquables */
+.card:hover { transform: translateY(-2px); }
+a:hover { text-decoration: underline; }
+
+/* 3) Focus visible bien lisible (accessibilité) */
+:focus-visible {
+    outline: none;
+    /* anneau double discret (compatible Bootstrap) */
+    box-shadow:
+            0 0 0 .2rem rgba(13,110,253,.25),
+            0 0 0 .35rem rgba(13,110,253,.15) !important; /* bleu Bootstrap */
+}
+.btn:focus-visible,
+.form-control:focus-visible,
+.form-select:focus-visible,
+.page-link:focus-visible,
+a.btn:focus-visible {
+    outline: none;
+    box-shadow:
+            0 0 0 .2rem rgba(13,110,253,.35),
+            0 0 0 .45rem rgba(13,110,253,.2) !important;
+}
+
+/* 4) Respecte les personnes sensibles au mouvement */
+@media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+    .card:hover { transform: none; }
+}
+
+/* 5) Images produits : ratio et crop propres (au cas où) */
+.object-fit-cover { object-fit: cover; }
+.product-card-img { aspect-ratio: 4/3; object-fit: cover; }
+
+/* 6) Boutons : léger relief au survol / enfoncement à l’active */
+.btn:hover { transform: translateY(-1px); }
+.btn:active { transform: translateY(0); }
+
+/* 7) Liens de la navbar : feedback visuel subtil */
+.navbar .nav-link { opacity: .9; }
+.navbar .nav-link:hover,
+.navbar .nav-link.active { opacity: 1; text-decoration: none; }
+
+/* 8) Toasts : s’assurer qu’ils passent au-dessus (au cas où) */
+.toast-container { z-index: 1080; }
+
+/* 9) Petites utilitaires (à la demande) */
+.rounded-2xl { border-radius: 1rem; }
+.shadow-hero { box-shadow: 0 10px 30px rgba(0,0,0,.08); }
+
+/* Footer */
+footer { background: transparent; }
+footer .nav-link:hover { text-decoration: none; }
+
+
+
