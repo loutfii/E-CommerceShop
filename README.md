@@ -59,6 +59,7 @@ Suppression sûre : on ne supprime que si le chemin commence par /uploads/
 - Base de données : JPA/Hibernate (H2 en dev ou autre DB au choix)
 - Bootstrap 5.3 + static/css/theme.css
 - Stripe
+- PostgreSQL
 ```
 
 ## Lancer l'application
@@ -120,7 +121,7 @@ src/main/java/com/example/ecommerce
 │   ├─ AdminProductController.java  # CRUD + upload + edit modal category
 │   ├─ AdminCategoryController.java # POST /admin/categories (JSON), DELETE /admin/categories/{id}
 │   ├─ AuthController.java          # login/register
-│   └─ AccountController.java       # delete account (optionnel si ajouté)
+│   └─ AccountController.java       # delete account 
 │
 src/main/resources/
 ├─ templates/
